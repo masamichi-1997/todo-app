@@ -1,0 +1,53 @@
+* , *::after, *::before {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+:root {
+  /* カラー（色） */
+  --white: #ffffff;
+  --gray-10: #eeeeee;
+  --gray-25: #aaaaaa;
+  --gray-50: #707070;
+  --gray-75: #444444;
+  --black: #222222;
+  --accent: #0d87e0;
+
+  /* フォントサイズ */
+  --body: clamp(1rem, 0.95rem + 0.2vw, 1.125rem); /* 16-18px */
+  --heading1: clamp(2rem, 1.3rem + 3vw, 4rem); /* 32-64px */
+  --heading2: calc(var(--body) * 1.5); /* 24-27px */
+
+  /* スペース */
+  --space-xs: clamp(1.25rem, 1rem + 0.98vw, 1.875rem); /* 20-30px */
+  --space-sm: calc(var(--space-xs) * 1.5); /* 30-45px */
+  --space-md: calc(var(--space-xs) * 2); /* 40-60px */
+}
+
+h1 {
+  padding: var(--space-sm) 0;
+  font-size: var(--heading1);
+}
+
+h2 {
+  padding: var(--space-xs) 0;
+  font-size: var(--heading2);
+}
+
+h1, h2 {
+  text-align: center;
+  color: var(--gray-75);
+}
+
+.button {
+  border: 0;
+  padding: 6px 8px;
+  border-radius: 5px;
+  transition: all .3s;
+  color: var(--black);
+  font-size: var(--body);
+  background-color: var(--gray-10);
+}

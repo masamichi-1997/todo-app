@@ -3,11 +3,11 @@
 </script>
 
 <template>
-  <Transition name="list">
+  <Transition name="tasks">
     <p v-if="!todos.length" class="no-task">タスクが存在しません</p>
   </Transition>
 
-  <transition-group name="list" tag="ul" class="lists">
+  <transition-group name="tasks" tag="ul" class="tasks">
     <li v-for="todo in todos" :key="todo.id" class="task-container">
       <div class="task">
         <input type="checkbox" v-model="todo.isComplete" :id="todo.id">
@@ -19,7 +19,7 @@
 </template>
 
 <style scoped>
-.lists {
+.tasks {
   margin: 0 auto;
   max-width: 500px;
 }
@@ -71,19 +71,19 @@
 
 
 /* アニメーション */
-.list-move,
-.list-enter-active,
+.tasks-move,
+.tasks-enter-active,
 .list-leave-active {
   transition: all 0.5s ease;
 }
 
-.list-enter-from,
-.list-leave-to {
+.tasks-enter-from,
+.tasks-leave-to {
   opacity: 0;
   transform: translateX(-30px);
 }
 
-.list-leave-active {
+.tasks-leave-active {
   position: absolute;
 }
 </style>

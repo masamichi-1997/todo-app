@@ -2,7 +2,7 @@
     import { Todo, useTodosStore} from "../stores/todos";
     const store = useTodosStore();
 
-    const todos = computed(() => store.todos)
+    const todos: Ref<Todo[]> = computed(() => store.todos)
     const completed = computed(() => store.todos.filter((todo) => todo.isComplete))
     const incomplete = computed(() => store.todos.filter((todo) => !todo.isComplete))
 
@@ -19,14 +19,14 @@
       active: boolean,
     }
 
-    const tabs: Tabs[] = [
+    const tabs: Ref<Tabs[]> = ref([
       { tab: "all", content: "全て", active: true },
       { tab: "incomplete", content: "未完了", active: false },
       { tab: "completed", content: "完了", active: false },
-    ];
+    ]);
 
     const changeTab = (tab: string) => {
-      tabs.forEach((t) => t.tab == tab ? t.active = true : t.active = false );
+      tabs.value.forEach((t) => t.tab == tab ? t.active = true : t.active = false );
       activeTab.value = tab;
     };
 </script>
@@ -35,17 +35,7 @@
   <div>
     <h2>タスクリスト</h2>
 
-    <ul class="tabs">
-      <li 
-      v-for="(t,index) in tabs" 
-      :key="index" 
-      @click="changeTab(t.tab)"
-      class="button tab"
-      :class="{active: t.active === true}"
-      >
-        {{ t.content }}
-      </li>
-    </ul>
+    <Tabs :tabs="tabs" :change-tab="changeTab" />
     
     <Tasks
       v-if="activeTab === 'all'"
@@ -67,29 +57,3 @@
 
   </div>
 </template>
-
-<style scoped>
-.tabs {
-  gap: 3rem;
-  display: flex;
-  justify-content: center;
-}
-
-.tab {
-  cursor: pointer;
-  color: var(--accent);
-  border: 1px solid var(--accent);
-}
-
-.tab:hover {
-  border: 0;
-  color: var(--white);
-  background-color: var(--accent);
-}
-
-.active {
-  border: 0;
-  color: var(--white);
-  background-color: var(--accent);
-}
-</style>

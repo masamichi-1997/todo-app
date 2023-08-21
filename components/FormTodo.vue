@@ -1,7 +1,6 @@
 <script lang="ts" setup>
   import { useTodosStore, Todo } from "../stores/todos";
   import { v4 as uuidv4 } from "uuid"
-  import { ref } from "vue"
   const store = useTodosStore();
   const newTask = ref("");
   

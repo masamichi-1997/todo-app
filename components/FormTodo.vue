@@ -2,10 +2,17 @@
   import { useTodosStore, Todo } from "../stores/todos";
   import { v4 as uuidv4 } from "uuid"
   const store = useTodosStore();
-  const newTask = ref("");
+  const newTask: Ref<string> = ref("");
   
   const addTodo = () => {
+
+    const max = 50 // 最大文字数
+    const min = 2 // 最低文字数
+
     if(newTask.value.trim() === "") return alert("タスクが未入力です");
+    if(newTask.value.length > max) return alert(`${max}文字以内で入力して下さい`);
+    if(newTask.value.length < min) return alert(`${min}文字以上で入力して下さい`);
+
     const newTodo: Todo = {
       id: uuidv4(),
       task: newTask.value,

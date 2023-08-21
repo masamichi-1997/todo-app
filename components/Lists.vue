@@ -3,15 +3,15 @@
     const store = useTodosStore();
 
     const todos: Ref<Todo[]> = computed(() => store.todos)
-    const completed = computed(() => store.todos.filter((todo) => todo.isComplete))
-    const incomplete = computed(() => store.todos.filter((todo) => !todo.isComplete))
+    const completed: Ref<Todo[]> = computed(() => store.todos.filter((todo) => todo.isComplete))
+    const incomplete: Ref<Todo[]> = computed(() => store.todos.filter((todo) => !todo.isComplete))
 
     const deleteTodo = (todo: Todo) => {
       if(!todo.isComplete) return alert("まだタスクが完了していません")
       store.deleteTodo(todo.id);
     };
 
-    const activeTab = ref("all");
+    const activeTab: Ref<string> = ref("all");
 
     interface Tabs {
       tab: string,

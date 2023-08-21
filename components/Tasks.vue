@@ -11,7 +11,7 @@
     <li v-for="todo in todos" :key="todo.id" class="task-container">
       <div class="task">
         <input type="checkbox" v-model="todo.isComplete" :id="todo.id">
-        <label :for="todo.id">{{ todo.task }}</label>
+        <label :for="todo.id" :class="{ checked: todo.isComplete }">{{ todo.task }}</label>
       </div>
       <button @click="deleteTodo(todo)" class="button delete">削除</button>
     </li>
@@ -55,6 +55,10 @@
 
 .task label {
   cursor: pointer;
+}
+
+.checked {
+  text-decoration: line-through;
 }
 
 .delete {

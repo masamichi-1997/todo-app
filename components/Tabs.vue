@@ -24,7 +24,6 @@
 }
 
 .tab {
-  cursor: pointer;
   color: var(--accent);
   border: 1px solid var(--accent);
 }

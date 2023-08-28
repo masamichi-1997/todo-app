@@ -3,19 +3,21 @@
 </script>
 
 <template>
-  <Transition name="tasks">
-    <p v-if="!todos.length" class="no-task">タスクが存在しません</p>
-  </Transition>
-
-  <transition-group name="tasks" tag="ul" class="tasks">
-    <li v-for="todo in todos" :key="todo.id" class="task-container">
-      <div class="task">
-        <input type="checkbox" v-model="todo.isComplete" :id="todo.id">
-        <label :for="todo.id" :class="{ checked: todo.isComplete }">{{ todo.task }}</label>
-      </div>
-      <button @click="deleteTodo(todo)" class="button delete">削除</button>
-    </li>
-  </transition-group>
+  <div class="tasks">
+    <Transition name="tasks">
+      <p v-if="!todos.length" class="no-task">タスクが存在しません</p>
+    </Transition>
+  
+    <transition-group name="tasks" tag="ul">
+      <li v-for="todo in todos" :key="todo.id" class="task-container">
+        <div class="task">
+          <input type="checkbox" v-model="todo.isComplete" :id="todo.id">
+          <label :for="todo.id" :class="{ checked: todo.isComplete }">{{ todo.task }}</label>
+        </div>
+        <button @click="deleteTodo(todo)" class="button delete">削除</button>
+      </li>
+    </transition-group>
+  </div>
 </template>
 
 <style scoped>
@@ -23,6 +25,7 @@
   margin: 0 auto;
   max-width: 500px;
 }
+
 .no-task {
   color: var(--black);
   text-align: center;
